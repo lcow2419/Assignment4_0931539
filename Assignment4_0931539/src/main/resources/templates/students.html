@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Students</title>
+</head>
+<body>
+
+<!-- Heading for Student List -->
+<h2>Student List</h2>
+
+<!-- Table to display student details -->
+<table border="1">
+    <tr>
+        <!-- Table headers -->
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Actions</th>
+    </tr>
+
+    <!-- Loop through each student object in the students list -->
+    <tr th:each="student : ${students}">
+        <!-- Display student ID -->
+        <td th:text="${student.id}"></td>
+        <!-- Display student name -->
+        <td th:text="${student.name}"></td>
+        <!-- Display student email -->
+        <td th:text="${student.email}"></td>
+        <!-- Display student age -->
+        <td th:text="${student.age}"></td>
+
+        <!-- Delete button inside a form -->
+        <td>
+            <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post">
+                <!-- Hidden field to specify DELETE HTTP method -->
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<!-- Link to add a new student -->
+<a href="/students/new">Add New Student</a>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Student</title>
+</head>
+<body>
+
+<!-- Heading for the form -->
+<h2>Add Student</h2>
+
+<!-- Student Form -->
+<!-- The form submits data to "/students/save" using the POST method -->
+<!-- The "th:object" binds the form fields to the "student" object -->
+<form th:action="@{/students/save}" th:object="${student}" method="post">
+
+    <!-- Name Input Field -->
+    <label>Name:</label>
+    <input type="text" th:field="*{name}"/>
+    <!-- Display validation error if the name field has errors -->
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <br>
+
+    <!-- Email Input Field -->
+    <label>Email:</label>
+    <input type="email" th:field="*{email}"/>
+    <!-- Display validation error if the email field has errors -->
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <br>
+
+    <!-- Age Input Field -->
+    <label>Age:</label>
+    <input type="number" th:field="*{age}"/>
+    <!-- Display validation error if the age field has errors -->
+    <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+    <br>
+
+    <!-- Submit Button -->
+    <button type="submit">Save</button>
+
+</form>
+
+</body>
+</html>
+
